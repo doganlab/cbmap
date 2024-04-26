@@ -12,7 +12,7 @@ Also the development verison of cbmap can be installed from master branch of Git
 
 Examples
 --------
-As a first example, the S-curve dataset is used. 
+In this example, the S-curve dataset is used for dimensionality reduction.
 
 ![resim](https://github.com/doganlab/cbmap/assets/26445624/d0fbf7e7-a757-482b-baae-585d98de5521)
 
