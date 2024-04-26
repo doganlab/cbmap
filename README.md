@@ -1,5 +1,5 @@
 # cbmap
-CBMAP: Clustering-based Manifold Approximation and Projection for Dimensionality Reduction
+CBMAP: Clustering-Based Manifold Approximation and Projection for Dimensionality Reduction
 
 Installation
 --------
