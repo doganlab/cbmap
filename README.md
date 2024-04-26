@@ -12,6 +12,12 @@ Also the development verison of cbmap can be installed from master branch of Git
 
 Examples
 --------
+As a first example, the S-curve dataset is used. 
+
+![resim](https://github.com/doganlab/cbmap/assets/26445624/d0fbf7e7-a757-482b-baae-585d98de5521)
+
+The two-dimensional projection of the S-curve datasets can be obtained as follows:
+
 ```{python}
 from sklearn import datasets
 import matplotlib.pyplot as plt
