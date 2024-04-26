@@ -15,6 +15,7 @@ Also the development verison of cbmap can be installed from master branch of Git
 Examples
 --------
 1. The S-curve dataset
+--------
 
 ![resim](https://github.com/doganlab/cbmap/assets/26445624/d0fbf7e7-a757-482b-baae-585d98de5521)
 
@@ -37,6 +38,7 @@ The output should be something as follows:
 ![resim](https://github.com/doganlab/cbmap/assets/26445624/56d94380-5b60-4739-b8a0-3a291557c069)
 
 2. The Mammoth dataset
+--------
 
 ```{python}
 import cbmap
