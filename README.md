@@ -23,4 +23,7 @@ S_cbmap = cbmapObj.fit_transform(S_points)
 plt.scatter(S_cbmap[:,0], S_cbmap[:,1], c=S_color)
 ```
 
+The output should be something like this:
+
+![resim](https://github.com/doganlab/cbmap/assets/26445624/56d94380-5b60-4739-b8a0-3a291557c069)
 
