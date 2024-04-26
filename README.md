@@ -43,6 +43,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import ticker
 import json
 import numpy as np
+
 #Then we load the mammoth dataset
 # Opening JSON file
 f = open('./datasets/mammoth_3d.json')
