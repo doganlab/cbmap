@@ -2,6 +2,7 @@
 CBMAP: Clustering-based Manifold Approximation and Projection for Dimensionality Reduction
 
 Installation
+--------
 
 cbmap can be installed as follows:
 
