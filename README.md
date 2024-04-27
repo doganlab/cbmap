@@ -103,4 +103,48 @@ The output should be something as follows:
 
 ![resim](https://github.com/doganlab/cbmap/assets/26445624/0bac4552-ca4f-49ac-add4-d93776b32966)
 
+3. Fashion MNIST dataset
+
+In this example we wiill split the Fashion MNIST dataset into training and test datasets. We will
+first learn the manifold with the training dataset and then project the unseen test data.
+
+```{python}
+import cbmap
+import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+
+# Load Fashion-MNIST dataset
+(X_train, y_train), (X_test, y_test) = tf.keras.datasets.fashion_mnist.load_data()
+
+X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1]**2))
+X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1]**2))
+
+X_train = X_train.astype('float32') / 255
+X_test = X_test.astype('float32') / 255
+
+S_points = np.concatenate((X_train, X_test))
+S_color = np.concatenate((y_train, y_test))
+
+X_train, X_test, y_train, y_test = train_test_split(S_points, S_color, test_size=0.25, random_state=42)
+
+params = {"n_clusters" : 40, "random_state": 0}
+cbmapObj = cbmap.CBMAP(params, clustering_method = "kmeans")
+X_train_projected_cbmap = cbmapObj.fit_transform(X_train)
+plt.scatter(X_train_projected_cbmap [:,0], X_train_projected_cbmap [:,1], c=y_train, cmap = plt.cm.rainbow, s=2, alpha=0.8)
+plt.title("Training set")
+plt.show()
+
+![resim](https://github.com/doganlab/cbmap/assets/26445624/312dbedf-d01e-423e-9d81-b37ee864f337)
+
+
+X_test_projected_cbmap = cbmapObj.transform(X_test)
+plt.scatter(X_test_projected_cbmap [:,0], X_test_projected_cbmap [:,1], c=y_test, cmap = plt.cm.rainbow, s=2, alpha=0.8)
+plt.title("Test set")
+plt.show()
+```
+
+![resim](https://github.com/doganlab/cbmap/assets/26445624/89c7abba-4520-4b2b-8788-2d6e13d3a37d)
+
 
