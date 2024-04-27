@@ -136,14 +136,17 @@ plt.scatter(X_train_projected_cbmap [:,0], X_train_projected_cbmap [:,1], c=y_tr
 plt.title("Training set")
 plt.show()
 
-![resim](https://github.com/doganlab/cbmap/assets/26445624/312dbedf-d01e-423e-9d81-b37ee864f337)
-
-
 X_test_projected_cbmap = cbmapObj.transform(X_test)
 plt.scatter(X_test_projected_cbmap [:,0], X_test_projected_cbmap [:,1], c=y_test, cmap = plt.cm.rainbow, s=2, alpha=0.8)
 plt.title("Test set")
 plt.show()
 ```
+
+2D embedding for the training data:
+
+![resim](https://github.com/doganlab/cbmap/assets/26445624/0297cc54-0a06-4af6-b8e4-49f0240fc124)
+
+2D embedding for the test data:
 
 ![resim](https://github.com/doganlab/cbmap/assets/26445624/89c7abba-4520-4b2b-8788-2d6e13d3a37d)
 
