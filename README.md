@@ -53,16 +53,16 @@ f = open('./datasets/mammoth_3d.json')
   # returns JSON object as 
 # a dictionary
 data = json.load(f)
-
 f.close()
 
 S_points = np.array(data)
 
 f2 = open('./datasets/mammoth_umap.json')
-    
 labels = json.load(f2)
 labels = labels['labels']
+
 S_color = np.zeros(len(labels))
+f2.close()
 
 colorIndex = -1
 nColorPoints = 0
@@ -73,7 +73,6 @@ for i in range(len(S_color)):
         nColorPoints += labels[colorIndex]
     S_color[i] = colorIndex
 
-f2.close()
 
 # Creating the plot
 fig = plt.figure(figsize=(30, 20))
