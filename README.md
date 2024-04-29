@@ -24,6 +24,7 @@ The two-dimensional projection of the S-curve datasets can be obtained as follow
 import cbmap
 from sklearn import datasets
 import matplotlib.pyplot as plt
+
 n_samples = 1000
 S_points, S_color = datasets.make_s_curve(n_samples, random_state=0)
 params = {"n_clusters" : 20,"random_state": 0}
@@ -46,7 +47,7 @@ from matplotlib import ticker
 import json
 import numpy as np
 
-#Then we load the mammoth dataset
+#load the mammoth dataset
 # Opening JSON file
 f = open('./datasets/mammoth_3d.json')
   # returns JSON object as 
