@@ -3,7 +3,8 @@ CBMAP: Clustering-Based Manifold Approximation and Projection for Dimensionality
 
 You could find the details of the method from the floowing preprint:
 
-```Dogan, B. (2024). CBMAP: Clustering-based manifold approximation and projection for dimensionality reduction. arXiv preprint arXiv:2404.17940.
+```
+Dogan, B. (2024). CBMAP: Clustering-based manifold approximation and projection for dimensionality reduction. arXiv preprint arXiv:2404.17940.
 ```
 Installation
 --------
