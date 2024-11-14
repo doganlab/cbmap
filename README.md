@@ -107,7 +107,7 @@ The output should be something as follows:
 
 3. Fashion MNIST dataset
 
-In this example we wiill split the Fashion MNIST dataset into training and test datasets. We will
+In this example we will split the Fashion MNIST dataset into training and test datasets. We will
 first learn the manifold with the training dataset and then project the unseen test data.
 
 ```{python}
