@@ -205,7 +205,7 @@ plt.show()
 We now apply CBMAP to reduce the dataset from 3D to 2D using PCA-based initialization for cluster centers.
 
 ```{python}
-# Define CBMAP parameters with PCA initialization
+# CBMAP with PCA-based initialization for cluster centers.
 params = {"n_clusters": 25, "random_state": 42, "center_init": "PCA"}
 cbmapObj = CBMAP(params, clustering_method="kmeans")
 
@@ -221,7 +221,7 @@ plt.show()
 To test the robustness of CBMAP, we now change the initialization strategy to "random". The result should remain nearly identical, proving that CBMAP is not sensitive to initialization strategies.
 
 ```{python}
-# Define CBMAP parameters with random initialization
+# CBMAP with random initialization for cluster centers.
 params = {"n_clusters": 25, "random_state": 42, "center_init": "random"}
 cbmapObj = CBMAP(params, clustering_method="kmeans")
 
