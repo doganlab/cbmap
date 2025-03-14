@@ -202,8 +202,6 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/be915fb2-3f8c-48d4-af83-e6920c12ce85)
 
-Dimensionality Reduction with CBMAP (center_init = "PCA")
-
 We now apply CBMAP to reduce the dataset from 3D to 2D using PCA-based initialization for cluster centers.
 
 ```{python}
@@ -220,8 +218,6 @@ plt.scatter(X_cbmap_pca[:, 0], X_cbmap_pca[:, 1], c=color_combined, cmap='Spectr
 plt.title("CBMAP Projection (center_init = 'PCA')")
 plt.show()
 ```
-Changing Initialization to center_init = "random"
-
 To test the robustness of CBMAP, we now change the initialization strategy to "random". The result should remain nearly identical, proving that CBMAP is not sensitive to initialization strategies.
 
 ```{python}
@@ -238,9 +234,7 @@ plt.scatter(X_cbmap_random[:, 0], X_cbmap_random[:, 1], c=color_combined, cmap='
 plt.title("CBMAP Projection (center_init = 'random')")
 plt.show()
 ```
-Comparing Both Results
-
-Finally, we compare the PCA-based and random-initialized projections side by side:
+We compare the PCA-based and random-initialized projections side by side:
 
 ```{python}
 
