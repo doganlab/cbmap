@@ -152,4 +152,148 @@ plt.show()
 
 ![resim](https://github.com/doganlab/cbmap/assets/26445624/89c7abba-4520-4b2b-8788-2d6e13d3a37d)
 
+4. In this example we will demonstrate how CBMAP (Clustering-Based Manifold Approximation and Projection) can effectively reduce the dimensionality of a complex, synthetic 3D dataset while preserving its structure. The dataset consists of:
+
+Two interleaved half-moon clusters (non-linearly separable).
+Two concentric circles (nested structures).
+A random Z-dimension is added to transform these 2D structures into a 3D dataset.
+
+We will apply CBMAP to reduce this 3D dataset to 2D and compare the effects of using different initialization strategies (center_init = "PCA" and center_init = "random").
+
+The dataset is created by combining:
+
+A moon-shaped dataset (make_moons) with random height variation (Z-axis noise).
+A circle-based dataset (make_circles) also with Z-axis noise.
+Both datasets are stacked to form a complex, mixed dataset in three dimensions.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.datasets import make_moons, make_circles
+from cbmap import CBMAP
+from sklearn.decomposition import PCA
+import umap
+from sklearn.manifold import TSNE
+
+# Create two complex 2D datasets
+X_moons, color_moons = make_moons(n_samples=1000, noise=0.05, random_state=42)
+X_circles, color_circles = make_circles(n_samples=1000, noise=0.05, factor=0.5, random_state=42)
+
+# Add a random Z-dimension to create a 3D dataset
+Z_moons = np.random.randn(X_moons.shape[0]) * 0.1
+Z_circles = np.random.randn(X_circles.shape[0]) * 0.1
+
+# Combine into 3D coordinates
+X_moons_3D = np.column_stack((X_moons, Z_moons))
+X_circles_3D = np.column_stack((X_circles, Z_circles))
+
+# Merge both datasets into a single 3D dataset
+X_combined_3D = np.vstack((X_moons_3D, X_circles_3D))
+color_combined = np.hstack((color_moons, color_circles))
+
+# Visualize the original 3D data
+fig = plt.figure(figsize=(6, 6))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(X_combined_3D[:, 0], X_combined_3D[:, 1], X_combined_3D[:, 2], c=color_combined, cmap='Spectral')
+ax.set_title("Original 3D Complex Dataset")
+plt.show()
+
+```
+Dimensionality Reduction with CBMAP (center_init = "PCA")
+
+We now apply CBMAP to reduce the dataset from 3D to 2D using PCA-based initialization for cluster centers.
+
+```{python}
+# Define CBMAP parameters with PCA initialization
+params = {"n_clusters": 25, "random_state": 42, "center_init": "PCA"}
+cbmapObj = CBMAP(params, clustering_method="kmeans")
+
+# Perform dimensionality reduction
+X_cbmap_pca = cbmapObj.fit_transform(X_combined_3D)
+
+# Visualize the results
+plt.figure(figsize=(6, 6))
+plt.scatter(X_cbmap_pca[:, 0], X_cbmap_pca[:, 1], c=color_combined, cmap='Spectral')
+plt.title("CBMAP Projection (center_init = 'PCA')")
+plt.show()
+```
+Changing Initialization to center_init = "random"
+
+To test the robustness of CBMAP, we now change the initialization strategy to "random". The result should remain nearly identical, proving that CBMAP is not sensitive to initialization strategies.
+
+```{python}
+# Define CBMAP parameters with random initialization
+params = {"n_clusters": 25, "random_state": 42, "center_init": "random"}
+cbmapObj = CBMAP(params, clustering_method="kmeans")
+
+# Perform dimensionality reduction
+X_cbmap_random = cbmapObj.fit_transform(X_combined_3D)
+
+# Visualize the results
+plt.figure(figsize=(6, 6))
+plt.scatter(X_cbmap_random[:, 0], X_cbmap_random[:, 1], c=color_combined, cmap='Spectral')
+plt.title("CBMAP Projection (center_init = 'random')")
+plt.show()
+```
+Comparing Both Results
+
+Finally, we compare the PCA-based and random-initialized projections side by side:
+
+```{python}
+
+fig, ax = plt.subplots(1, 2, figsize=(12, 5))
+
+# PCA-based projection
+ax[0].scatter(X_cbmap_pca[:, 0], X_cbmap_pca[:, 1], c=color_combined, cmap='Spectral')
+ax[0].set_title("CBMAP Projection (PCA Initialization)")
+
+# Random-based projection
+ax[1].scatter(X_cbmap_random[:, 0], X_cbmap_random[:, 1], c=color_combined, cmap='Spectral')
+ax[1].set_title("CBMAP Projection (Random Initialization)")
+
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/d38d09fe-8084-4fe3-852a-03e6a1fbe92a)
+
+Finally, let's compare CBMAP with PCA, UMAP and t-SNE!
+
+```{python}
+# Apply PCA for dimensionality reduction
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_combined_3D)
+
+# Apply UMAP for dimensionality reduction
+umap_model = umap.UMAP(n_components=2, random_state=42)
+X_umap = umap_model.fit_transform(X_combined_3D)
+
+# Apply t-SNE for dimensionality reduction
+tsne = TSNE(n_components=2, random_state=42)
+X_tsne = tsne.fit_transform(X_combined_3D)
+
+# Apply CBMAP for dimensionality reduction
+params = {"n_clusters": 25, "random_state": 42, "center_init": "PCA"}
+cbmapObj = CBMAP(params, clustering_method="kmeans")
+X_cbmap = cbmapObj.fit_transform(X_combined_3D)
+
+# Plot all results side by side
+fig, ax = plt.subplots(1, 3, figsize=(20, 5))
+
+# PCA
+ax[0].scatter(X_pca[:, 0], X_pca[:, 1], c=color_combined, cmap='Spectral')
+ax[0].set_title("PCA Projection")
+
+# UMAP
+ax[1].scatter(X_umap[:, 0], X_umap[:, 1], c=color_combined, cmap='Spectral')
+ax[1].set_title("UMAP Projection")
+
+# t-SNE
+ax[2].scatter(X_tsne[:, 0], X_tsne[:, 1], c=color_combined, cmap='Spectral')
+ax[2].set_title("t-SNE Projection")
+```
+Here is the output!
+
+![image](https://github.com/user-attachments/assets/3243b9bf-fb81-4e26-9931-61854346945b)
+
+
 
