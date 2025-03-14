@@ -267,11 +267,6 @@ X_umap = umap_model.fit_transform(X_combined_3D)
 tsne = TSNE(n_components=2, random_state=42)
 X_tsne = tsne.fit_transform(X_combined_3D)
 
-# Apply CBMAP for dimensionality reduction
-params = {"n_clusters": 25, "random_state": 42, "center_init": "PCA"}
-cbmapObj = CBMAP(params, clustering_method="kmeans")
-X_cbmap = cbmapObj.fit_transform(X_combined_3D)
-
 # Plot all results side by side
 fig, ax = plt.subplots(1, 3, figsize=(20, 5))
 
