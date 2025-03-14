@@ -200,6 +200,8 @@ ax.set_title("Original 3D Complex Dataset")
 plt.show()
 
 ```
+![image](https://github.com/user-attachments/assets/be915fb2-3f8c-48d4-af83-e6920c12ce85)
+
 Dimensionality Reduction with CBMAP (center_init = "PCA")
 
 We now apply CBMAP to reduce the dataset from 3D to 2D using PCA-based initialization for cluster centers.
