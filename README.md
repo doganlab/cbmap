@@ -152,7 +152,7 @@ plt.show()
 
 ![resim](https://github.com/doganlab/cbmap/assets/26445624/89c7abba-4520-4b2b-8788-2d6e13d3a37d)
 
-4. In this example we will demonstrate how CBMAP (Clustering-Based Manifold Approximation and Projection) can effectively reduce the dimensionality of a complex, synthetic 3D dataset while preserving its structure. The dataset consists of:
+4. In this example we will demonstrate CBMAP is not sensitive to initialization. For this purpose, first a synthetic 3D dataset is created:
 
 Two interleaved half-moon clusters (non-linearly separable).
 Two concentric circles (nested structures).
